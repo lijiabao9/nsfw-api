@@ -13,6 +13,8 @@ app = Flask(__name__)
 
 # 从环境变量读取 API_KEY，若未设置则使用默认密钥（仅开发用）
 API_KEY = os.environ.get("API_KEY", "default_api_key_please_change")
+# 只有明确配置为 "false"（不区分大小写）才关闭鉴权，其余情况均开启
+AUTH_ENABLE = os.environ.get("AUTH_ENABLE", "True").strip().lower() != "false"
 
 def make_transformer(nsfw_net):
     transformer = caffe.io.Transformer({'data': nsfw_net.blobs['data'].data.shape})
@@ -32,6 +34,8 @@ caffe_transformer = make_transformer(nsfw_net)
 # ---------- 鉴权装饰器 ----------
 def require_auth():
     """检查请求中的 key 参数是否匹配 API_KEY"""
+    if not AUTH_ENABLE:
+        return True  # 鉴权关闭，直接通过
     key = request.args.get('key')
     if not key or key != API_KEY:
         return False

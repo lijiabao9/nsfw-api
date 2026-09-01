@@ -9,6 +9,7 @@ on:
     paths:
       - 'open_nsfw/**'
       - 'web/**'
+      - 'requirements.txt'
       - 'Dockerfile'
     # 触发条件 2：当你发布版本打 tag 时触发（例如 v1.0.0）
     tags:

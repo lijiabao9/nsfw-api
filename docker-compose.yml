@@ -1,0 +1,10 @@
+services:
+  core:
+    image: ghcr.io/lijiabao9/nsfw-api:latest
+    container_name: nsfw-api-core
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      - TZ=Asia/Shanghai
+      - API_KEY=your_secret_key_here   # 请替换为实际密钥

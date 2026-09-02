@@ -230,7 +230,6 @@ curl -X POST -H 'Content-Type: application/json' \
 | `API_KEY` | 用于鉴权的密钥 | `default_api_key_please_change`（强烈建议修改） |
 | `AUTH_ENABLE` | 是否开启接口鉴权。只有明确设置为 `false`（不区分大小写）时才关闭鉴权，其他值（包括未设置）均视为开启 | `True`（即开启） |
 | `TZ` | 时区，如 `Asia/Shanghai` | 无（默认 UTC） |
-| `PORT` | 服务监听端口 | `5000` |
 
 ## 注意事项
 
